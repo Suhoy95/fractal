@@ -1,0 +1,28 @@
+<div class="customization-bar" ng-show="show_setting">
+    <h2> Настройки </h2>
+    <label>Ширина: <input type="number" 
+                          ng-model = "setting.width"
+                          min="1"
+                          ng-change = "saveSetting()">
+    </label> 
+    
+    <label>
+            <input type="checkbox" 
+                   ng-model="setting.fixedWidth"
+                   ng-change="saveSetting()">
+            Зафиксировать ширину
+    </label>
+    <br>
+    <label>Высота: <input type="number" 
+                          ng-model="setting.height"
+                          min="1"
+                          ng-change="saveSetting()">
+
+    </label>
+    <label>
+            <input type="checkbox" 
+                   ng-model="setting.fixedHeight"
+                   ng-change="saveSetting()"> 
+            Зафиксировать высоту
+    </label>
+</div>
