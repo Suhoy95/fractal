@@ -1,0 +1,156 @@
+
+.workplace {
+    position: relative;
+    margin-top: 4em;
+    z-index: 0;
+}
+
+.workplace>.title{
+    position: absolute;
+    min-width: 22em;
+    padding: 0.5em;
+    margin: -2.4em 0 0 1em;
+    background: rgba(250, 200, 100, 0.9);
+    border: 1px solid rgba(150, 150, 150, 0.3);
+    box-shadow: 0.5em 0.5em 0.4em 0.01em rgba(0, 0, 0, 0.2);
+    font-size:  1.4em;
+}
+
+.workplace .column {
+  display: block;
+  float: left;
+  width: 14em;
+  margin: 0 1.5em 0 1.5em;
+}
+
+.workplace .item {
+    display: block;
+    position: relative;
+    width: 14em;
+    padding: 0.5em;
+    margin: 1.5em 0 1.5em 0;
+    background: rgba(255, 255, 255, 0.9) 0 0;
+    border: 1px solid rgba(150, 150, 150, 0.3);
+    box-shadow: 0.5em 0.5em 0.4em 0.01em rgba(0, 0, 0, 0.2);
+}
+
+/* .item.note  */
+.item.note h2 {
+    position: relative;
+    width: 11em;
+    min-height: 1em;
+    padding: 0.4em 0.4em 0.4em 0.6em;
+    margin: -0.4em 0 0.4em -0.4em;
+    background: rgba(250, 200, 100, 0.9) 0 0;
+    color: rgba(51, 51, 51, 0.9);
+    font-weight: normal;
+    font-size: 1.25em;
+}
+.item.note .description {
+    min-height: 1em; 
+    margin: 0 0 0.75em 0;
+    padding: 0.5em 0 0;
+    text-align: justify;
+    line-height: 1.2em;
+}
+
+.item.note .readall {
+  text-align: center;
+}
+
+.item.note .controll button {
+    height: 1.4em;
+    min-width: 1.4em;
+    padding: 0.2em;
+    margin:0 0em 0 0.5em;
+    background-color: rgba(255, 255, 255, 0.9);
+    line-height: 1em;
+}
+
+.item.note .controll button:hover {
+    background-color: rgba(150, 150, 150, 0.25);
+    cursor: pointer;
+}
+.item.note .controll button:active {
+    background-color: rgba(51, 51, 51, 0.9);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.item.note .edit-item { background: url("img/edit-icon.png") 0 0 no-repeat; background-size: 1.4em; }
+.item.note .edit-item:active { background-image: url("img/edit-icon-active.png"); background-size: 1.4em; }
+
+.item.note .delete-item { background: url("img/delete-icon.png") 0 0 no-repeat; background-size: 1.4em; }
+.item.note .delete-item:active{ background-image: url("img/delete-icon-active.png"); background-size: 1.4em; }
+
+.item.note .controll .analogy,
+.item.note .controll .sup-item,
+.item.note .controll .sub-item {padding-left: 1.4em;}
+
+.item.note .analogy { background: url("img/analogy-item.png") 0 0 no-repeat; background-size: 1.4em; }
+.item.note .analogy:active { background-image: url("img/analogy-item-active.png"); background-size: 1.4em; }
+
+.item.note .sup-item { background: url("img/sup-item.png") 0 0 no-repeat; background-size: 1.4em; }
+.item.note .sup-item:active{ background-image: url("img/sup-item-active.png"); background-size: 1.4em; }
+
+.item.note .sub-item { background: url("img/sub-item.png") 0 0 no-repeat; background-size: 1.4em; }
+.item.note .sub-item:active{ background-image: url("img/sub-item-active.png"); background-size: 1.4em; }
+/*item.note.edit */
+.item.note.edit .edit-item{ display: none; }
+
+.item.note.edit h2 {
+    position: relative;
+    width: 11em;
+    min-height: 1em;
+    padding: 0.4em 0.4em 0.4em 0.6em;
+    margin: -0.4em 0 0.4em -0.4em;
+    background: rgba(250, 200, 100, 0.9);
+    font-size: 1.25em;
+}
+
+.item.note.edit h2 input {
+  display: block;
+  width: 100%;
+  font-size: 0.8em;
+}
+
+.item.note.edit .description {
+    width: 100%;
+    height: 14em;
+    padding: 0;
+    margin: 0.5em 0 0.5em 0;
+    resize: none;
+}
+
+.item.note.edit .save-note {
+  display: block;
+  position: relative;
+  padding: 0 1em 0 1em;
+}
+
+
+/* item.empty */
+.item.empty {
+    height: 14em;
+    background: rgba(200, 200, 200, 0.65) url("img/add-note.png") 2em 2em no-repeat;
+    background-size: 11em;
+}
+.item.empty:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    cursor: pointer;
+}
+
+.item.add h2 {
+  position:relative;
+  left: 0.2em;
+  margin-bottom: 1.5em;
+  color: rgba(0,0,0,0.67); 
+  text-align: center;
+}
+
+.item.add button {
+  display: block;
+  position: relative;
+  width: 16em;
+  padding: 0.2em 0em 0.2em 0em;
+  margin: 1em auto;
+}

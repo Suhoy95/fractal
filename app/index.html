@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html ng-app="FractalApp">
+<head>
+    <title>Fractal</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/header.css">
+    <link rel="stylesheet" type="text/css" href="css/workplace.css">
+    <link rel="stylesheet" type="text/css" href="css/article.css">
+    <link rel="stylesheet" type="text/css" href="css/footer.css">
+</head>
+<body>
+    <div class="header">
+        <h1>Fractal</h1>
+        <button class="customization-button" ng-click="show_setting = !show_setting"></button>
+        <div class="customization-bar" ng-show="show_setting">
+            <h2> Настройки </h2>
+            <label>Ширина: <input type="text"></label> 
+            <label><input type="checkbox"> Зафиксировать ширину</label>
+            <br>
+            <label>Высота: <input type="text"></label>
+            <label><input type="checkbox"> Зафиксировать высоту</label>
+        </div>
+    </div>
+
+    <div class="workplace clearfix">
+<!--         <div class="column" ng-repeat="(x, column) in items | CompleteColumn:settings.amountOfColumns">
+            <div ng-repeat="(y, item) in column | CompleteRow:settings.amountOfRows">
+                <div ng-include="item.type | toItemUrl"></div>
+            </div>
+        </div> -->
+    </div>
+
+    <div ui-view="full-article"></div>
+
+    <div class="footer">
+        Made by <a href="">&copy;Suhoy</a>
+    </div>
+
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/backend.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="js/directives.js"></script>
+</body>
+</html>

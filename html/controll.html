@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Заметки</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="style/style.css">
+    <link rel="stylesheet" type="text/css" href="style/header.css">
+    <link rel="stylesheet" type="text/css" href="style/workplace.css">
+    <link rel="stylesheet" type="text/css" href="style/article.css">
+    <link rel="stylesheet" type="text/css" href="style/footer.css">
+</head>
+<body>
+
+    <div class="header">
+        <h1>Fractal</h1>
+        <button class="customization-button"></button>
+        <div class="customization-bar">
+            <h2> Настройки </h2>
+            <label>Ширина: <input type="text" name="workplace-width" value="4"></label> 
+            <label><input type="checkbox" name="fixed-width" value="fixed"> Зафиксировать ширину</label>
+            <br>
+            <label>Высота: <input type="text" name="workplace-height" value="4"></label>
+            <label><input type="checkbox" name="fixed-height" value="fixed"> Зафиксировать высоту</label>
+        </div>
+    </div>
+
+    <div class="workplace clearfix">
+        <div class="column">
+            <div class="item note">
+                
+                <h2>Добро пожаловать</h2>
+                
+                <div class="controll clearfix">
+                    <button class="delete-item" title="Удалить"></button>
+                    <button class="edit-item" title="Редактировать"></button>
+                    <button class="analogy" title="Покаать аналогии">3</button> 
+                    <button class="sub-item" title="Показать подэлементы">2</button>
+                    <button class="sup-item" title="Показать надэлементы">1</button>                   
+                </div>
+
+                <div class="description">
+                    Fractal - это новый инструмент, для создания гибких и информативных схем т заметок.
+                </div>
+            </div>
+            <div class="item empty"></div>
+            <div class="item empty"></div>
+            <div class="item empty"></div>
+        </div>
+
+        <div class="column">
+            <div class="item note edit"> 
+                <h2><input type="text" class="title" value="Заголовок" ></h2>
+                <div class="controll clearfix">
+                    <button class="delete-item" title="Удалить"></button>
+                    <button class="edit-item" title="Редактировать"></button>
+                    <button class="analogy" title="Покаать аналогии">3</button> 
+                    <button class="sub-item" title="Показать подэлементы">2</button>
+                    <button class="sup-item" title="Показать надэлементы">1</button>                   
+                </div>
+                <textarea class="description">Краткое описание.</textarea>
+                <button class="save-note">Сохранить</button>
+            </div>
+            <div class="item empty"></div>
+            <div class="item empty"></div>
+            <div class="item empty"></div>
+        </div>        
+        
+        <div class="column">
+            <div class="item add">
+                <h2>Создать</h2>
+                <button data-type="note">Заметку</button>
+                <button data-type="article">Статью(пока нельзя)</button>
+                <button data-type="list">Лист(пока нельзя)</button>
+                <button data-type="cancel">Отмена</button>
+            </div>
+            <div class="item empty"></div>
+            <div class="item empty"></div>
+            <div class="item empty"></div>
+        </div>
+
+        <div class="column">
+            <div class="item empty"></div>
+            <div class="item empty"></div>
+            <div class="item empty"></div>
+            <div class="item empty"></div>
+        </div>
+    </div>
+
+
+    <div class="footer">
+        Made by <a href="">&copy;Suhoy</a>
+    </div>
+
+    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>
