@@ -19,12 +19,31 @@ describe("grid master service", function(){
         });
      });
 
-    it("should create a grid by setting", function(){
+    it("should complete a grid by setting", function(){
         items = gridMaster.compliteGrid(items, setting);
 
         expect(items.length).toBe(setting.width);
 
         for(var key in items)
             expect(items[key].length).toBe(setting.height);
+    });
+
+    it("should complete a grid of minimum setting", function(){
+        items = gridMaster.compliteGrid(items, setting);
+
+        expect(items.length).not.toBeLessThan(setting.minWidth);
+
+        for(var key in items)
+            expect(items[key].length).not.toBeLessThan(setting.minHeight);
+    });
+
+    it("should complete the littelst grid", function(){
+        setting.minWidth = 5;
+        items = gridMaster.compliteGrid(items, setting);
+
+        setting.minWidth = 4;
+        items = gridMaster.compliteGrid(items, setting);
+
+        expect(items.length).toBe(setting.minWidth);
     });
 });

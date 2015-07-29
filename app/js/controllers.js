@@ -11,8 +11,8 @@ FractalControllers.controller("dataController", ["$scope", "backend", "gridMaste
 
     $scope.saveSetting = function()
     {
-        backend.setSetting($scope.setting);
         $scope.items = gridMaster.compliteGrid($scope.items, $scope.setting );
+        backend.setSetting($scope.setting);
     }
 
 }]);
@@ -25,12 +25,14 @@ FractalControllers.controller("gridController", ["$scope", "backend", "dialogs",
     $scope.createItem = function(x, y)
     {
         $scope.items[x][y].type = "add";
+        $scope.saveSetting();
     }
 
     $scope.setEmpty = function(x, y)
     {
         backend.deleteItem(x, y);
         $scope.items[x][y] = backend.getItem(x, y);
+        $scope.saveSetting();
     }
 
     $scope.createNote = function(x, y)

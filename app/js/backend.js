@@ -8,6 +8,8 @@ FractalBackend.factory('backend', function() {
     return { 
 
         setting: {
+            minWidth: 4,
+            minHeight: 4,
             width: 4,
             height: 4,
             fixedWidth: false,
