@@ -55,24 +55,28 @@ FractalBackend.factory('backend', function() {
             return item;
         },
 
+        checkItem: function(x, y)
+        {
+            var items = this.items;
+            items[x] = items[x] || [];
+            items[x][y] = items[x][y] || this.createItem();
+        },
+
         deleteItem: function(x, y)
         {
             var items = this.items;
 
-            items[x] = items[x] || [];
-            items[x][y] = this.getEmptyItem();
+            if(items[x] && items[x][y] )
+                items[x][y] = this.getEmptyItem();
         },
 
         createNote: function(x, y, data){
-            var items = this.items;
-            items[x] = items[x] || [];
-
-            items[x][y] = this.createItem();
-
+            this.checkItem(x, y);
             this.saveNote(x, y, data);
         },
 
         saveNote: function(x, y, data){
+            this.checkItem(x, y);
             var items = this.items;
 
             for(var key in data)

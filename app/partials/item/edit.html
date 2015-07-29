@@ -1,0 +1,11 @@
+<div class="item note edit"> 
+    <h2><input type="text" class="title" ng-model="item.title" ></h2>
+    <div class="controll clearfix">
+        <button class="delete-item" title="Удалить" ng-click="deleteNote(x, y)"></button>
+        <button class="analogy" title="Покаать аналогии">{{item.analogyItems.length}}</button> 
+        <button class="sub-item" title="Показать подэлементы">{{item.subItems.length}}</button>
+        <button class="sup-item" title="Показать надэлементы">{{item.supItems.length}}</button>                   
+    </div>
+    <textarea class="description" ng-model="item.text"></textarea>
+    <button class="save-note" ng-click="saveNote(x, y)">Сохранить</button>
+</div>

@@ -1,0 +1,16 @@
+<div class="item note">
+                
+    <h2>{{item.title}}</h2>
+    
+    <div class="controll clearfix">
+        <button class="delete-item" title="Удалить" ng-click="deleteNote(x, y)"></button>
+        <button class="edit-item" title="Редактировать" ng-click="editNote(x, y)"></button>
+        <button class="analogy" title="Покаать аналогии">{{item.analogyItems.length}}</button> 
+        <button class="sub-item" title="Показать подэлементы">{{item.subItems.length}}</button>
+        <button class="sup-item" title="Показать надэлементы">{{item.supItems.length}}</button>                    
+    </div>
+
+    <div class="description">
+        {{item.text}}
+    </div>
+</div>
