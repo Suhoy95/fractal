@@ -65,10 +65,19 @@ describe("Backend service for Fractal's front-end", function() {
         expect( typeof(item.subItems) ).toBe("object");
     });
 
-
-    it("shoud edit created item", function(){
+    it("should delete item", function(){
         backend.createNote(1, 1, {title: "note", text: "text"});
-        backend.editNote(1, 1, {title: "title"});
+        backend.deleteItem(1, 1);
+
+        var item = backend.getItems()[1][1];
+
+        expect( item.isEmpty() ).toBe(true);
+    });
+
+
+    it("should save created note", function(){
+        backend.createNote(1, 1, {title: "note", text: "text"});
+        backend.saveNote(1, 1, {title: "title"});
 
         var item = backend.getItems()[1][1];
 

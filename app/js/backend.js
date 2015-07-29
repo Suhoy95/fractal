@@ -28,6 +28,14 @@ FractalBackend.factory('backend', function() {
             return this.items;
         },
 
+        getItem: function(x, y){
+            var items = this.items;
+            if(items[x] && items[x][y])            
+                return this.items[x][y];
+
+            return this.getEmptyItem();
+        },
+
         getEmptyItem: function(){
             return {
                 type: "empty",
@@ -37,12 +45,22 @@ FractalBackend.factory('backend', function() {
 
         createItem: function()
         {
-            return {
-                id: this.idCount++,
-                analogyItems:[],
-                supItems:[],
-                subItems:[]
-            }
+            var item = this.getEmptyItem();
+
+            item.id = this.idCount++;
+            item.analogyItems = [];
+            item.subItems = [];
+            item.supItems = [];
+
+            return item;
+        },
+
+        deleteItem: function(x, y)
+        {
+            var items = this.items;
+
+            items[x] = items[x] || [];
+            items[x][y] = this.getEmptyItem();
         },
 
         createNote: function(x, y, data){
@@ -51,10 +69,10 @@ FractalBackend.factory('backend', function() {
 
             items[x][y] = this.createItem();
 
-            this.editNote(x, y, data);
+            this.saveNote(x, y, data);
         },
 
-        editNote: function(x, y, data){
+        saveNote: function(x, y, data){
             var items = this.items;
 
             for(var key in data)
