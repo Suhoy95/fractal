@@ -50,8 +50,22 @@ describe("Backend service for Fractal's front-end", function() {
         expect( item.isEmpty() ).toBe(false);
     });
 
-    it("should create new note", function(){
-        backend.createNote(1, 1, {title: "note", text: "text"});
+    it("should give note item", function(){
+        var item = backend.createNote();
+
+        expect( item.type ).toBe("note");
+        expect( item.title ).toBe("");
+        expect( item.text ).toBe("");
+
+        expect( typeof(item.id) ).toBe("number");
+        expect( typeof(item.analogyItems) ).toBe("object");
+        expect( typeof(item.supItems) ).toBe("object");
+        expect( typeof(item.subItems) ).toBe("object");
+    });
+
+
+    it("should save note", function(){
+        backend.saveNote(1, 1, {title: "note", text: "text"});
 
         var item = backend.getItems()[1][1];
         
@@ -66,7 +80,7 @@ describe("Backend service for Fractal's front-end", function() {
     });
 
     it("should delete item", function(){
-        backend.createNote(1, 1, {title: "note", text: "text"});
+        backend.saveNote(1, 1, {title: "note", text: "text"});
         backend.deleteItem(1, 1);
 
         var item = backend.getItems()[1][1];
@@ -76,7 +90,7 @@ describe("Backend service for Fractal's front-end", function() {
 
 
     it("should save created note", function(){
-        backend.createNote(1, 1, {title: "note", text: "text"});
+        backend.saveNote(1, 1, {title: "note", text: "text"});
         backend.saveNote(1, 1, {title: "title"});
 
         var item = backend.getItems()[1][1];

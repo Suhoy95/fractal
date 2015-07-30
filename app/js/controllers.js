@@ -37,7 +37,7 @@ FractalControllers.controller("gridController", ["$scope", "backend", "dialogs",
 
     $scope.createNote = function(x, y)
     {
-        $scope.items[x][y] = backend.createItem();
+        $scope.items[x][y] = backend.createNote();
         $scope.editNote(x, y);
     }
 
@@ -56,7 +56,7 @@ FractalControllers.controller("gridController", ["$scope", "backend", "dialogs",
     $scope.deleteNote = function(x, y)
     {
         var note = $scope.items[x][y];
-        if(note.title == "" || note.text == "" || 
+        if(note.title == "" && note.text == "" || 
            dialogs.confirm("Вы точно хотите удалить заметку?"))
         {
             $scope.setEmpty(x, y);   

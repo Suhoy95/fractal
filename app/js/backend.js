@@ -72,9 +72,14 @@ FractalBackend.factory('backend', function() {
                 items[x][y] = this.getEmptyItem();
         },
 
-        createNote: function(x, y, data){
-            this.checkItem(x, y);
-            this.saveNote(x, y, data);
+        createNote: function(){
+            var item = this.createItem();
+
+            item.type = "note";
+            item.title = "";
+            item.text = "";
+
+            return item;
         },
 
         saveNote: function(x, y, data){
