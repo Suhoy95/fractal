@@ -44,6 +44,7 @@ FractalControllers.controller("gridController", ["$scope", "backend", "dialogs",
     $scope.editNote = function(x, y)
     {
         $scope.items[x][y].type = "edit";
+        $scope.focusedItem = $scope.items[x][y];
     }
 
     $scope.saveNote = function(x, y)
@@ -51,6 +52,7 @@ FractalControllers.controller("gridController", ["$scope", "backend", "dialogs",
         backend.saveNote(x, y, $scope.items[x][y]);
 
         $scope.items[x][y] = backend.getItem(x, y);
+        $scope.disableRelatives();
     }
 
     $scope.deleteNote = function(x, y)
@@ -62,4 +64,45 @@ FractalControllers.controller("gridController", ["$scope", "backend", "dialogs",
             $scope.setEmpty(x, y);   
         }
     }
+
+    $scope.relatives = { analogy: false, sup: false, sub: false };
+    $scope.focusedItem = {};
+
+    $scope.isEnabledRelatives = function()
+    {
+        return $scope.relatives.analogy ||
+               $scope.relatives.sup ||
+               $scope.relatives.sub;
+    }
+
+    $scope.getEnabledRelative = function()
+    {
+        for(var key in $scope.relatives)
+            if($scope.relatives[key])
+                return key;
+    }
+
+    $scope.disableRelatives = function() {
+        $scope.relatives.analogy = false;
+        $scope.relatives.sup = false;
+        $scope.relatives.sub = false;
+    }
+
+    $scope.triggerRelative = function(relative)
+    {
+        if($scope.isEnabledRelatives() && !$scope.relatives[relative]) return;
+
+        $scope.relatives[relative] = !$scope.relatives[relative];
+    }
+
+    $scope.toggleRelative = function(id)
+    {
+        var relativeArr = $scope.focusedItem[$scope.getEnabledRelative() + "Items"];
+        var i = relativeArr.indexOf(id); 
+        if( i >=0 )
+            relativeArr.splice(i, 1);
+        else
+            relativeArr.push(id);
+    }
+
 }]);

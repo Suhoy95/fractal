@@ -13,4 +13,8 @@
     <div class="description">
         {{item.text}}
     </div>
+
+    <div class="cover" ng-show="isEnabledRelatives()" ng-click="toggleRelative(item.id)">
+        <p>Нажмите сюда то бы выбрать элемент</p>
+    </div>
 </div>

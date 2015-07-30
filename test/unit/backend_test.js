@@ -32,11 +32,10 @@ describe("Backend service for Fractal's front-end", function() {
         expect( newSetting.width ).toBe(5);
     });
 
-    it("should give empty items", function(){
+    it("should give items", function(){
         var items = backend.getItems();
 
         expect( typeof(items) ).toBe("object");
-        expect( items.length ).toBe(0);
     });
 
     it("should give empty item", function(){

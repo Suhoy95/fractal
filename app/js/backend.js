@@ -15,8 +15,31 @@ FractalBackend.factory('backend', function() {
             fixedWidth: false,
             fixedHeight: false
         },
-        items: [],
-        idCount: 1,
+        items:  [
+                    [
+                        {
+                            id: 1,
+                            type: "note",
+                            analogyItems: [],
+                            subItems: [],
+                            supItems: [],
+                            title: "title",
+                            text: "text",
+                            isEmpty: function() { return this.type == "empty"; }
+                        },
+                        {
+                            id: 2,
+                            type: "note",
+                            analogyItems: [1],
+                            subItems: [],
+                            supItems: [],
+                            title: "title",
+                            text: "text",
+                            isEmpty: function() { return this.type == "empty"; }
+                        }
+                    ]
+                ],
+        idCount: 3,
 
         getSetting: function(){
             return this.setting;      
