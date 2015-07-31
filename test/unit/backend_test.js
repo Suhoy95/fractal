@@ -57,9 +57,9 @@ describe("Backend service for Fractal's front-end", function() {
         expect( item.text ).toBe("");
 
         expect( typeof(item.id) ).toBe("number");
-        expect( typeof(item.analogyItems) ).toBe("object");
-        expect( typeof(item.supItems) ).toBe("object");
-        expect( typeof(item.subItems) ).toBe("object");
+        expect( typeof(item.analogy) ).toBe("object");
+        expect( typeof(item.sup) ).toBe("object");
+        expect( typeof(item.sub) ).toBe("object");
     });
 
 
@@ -73,9 +73,9 @@ describe("Backend service for Fractal's front-end", function() {
         expect( item.title ).toBe("note");
         expect( item.text ).toBe("text");
 
-        expect( typeof(item.analogyItems) ).toBe("object");
-        expect( typeof(item.supItems) ).toBe("object");
-        expect( typeof(item.subItems) ).toBe("object");
+        expect( typeof(item.analogy) ).toBe("object");
+        expect( typeof(item.sup) ).toBe("object");
+        expect( typeof(item.sub) ).toBe("object");
     });
 
     it("should delete item", function(){
@@ -89,8 +89,7 @@ describe("Backend service for Fractal's front-end", function() {
 
 
     it("should save created note", function(){
-        backend.saveNote(1, 1, {title: "note", text: "text"});
-        backend.saveNote(1, 1, {title: "title"});
+        backend.saveNote(1, 1, {title: "title", text: "text"});
 
         var item = backend.getItems()[1][1];
 

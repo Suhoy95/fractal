@@ -62,6 +62,8 @@ FractalItemFactory.factory('itemFactory', function() {
 
             for(var key in data)
                 this[key] = data[key];
+            if(data.id && data.id >= idCounter)
+                idCounter = data.id++;
         }
     }
 

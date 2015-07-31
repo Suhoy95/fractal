@@ -2,10 +2,10 @@
 
 /* Services */
 
-var FractalBackend = angular.module("FractalBackend", []);
+var FractalBackend = angular.module("FractalBackend", ["FractalItemFactory"]);
 
-FractalBackend.factory('backend', function() {
-    return { 
+FractalBackend.factory('backend', ["itemFactory", function(itemFactory) {
+    var  backend  = { 
 
         setting: {
             minWidth: 4,
@@ -20,26 +20,19 @@ FractalBackend.factory('backend', function() {
                         {
                             id: 1,
                             type: "note",
-                            analogyItems: [],
-                            subItems: [],
-                            supItems: [],
+                            analogyItems: [2],
                             title: "title",
                             text: "text",
-                            isEmpty: function() { return this.type == "empty"; }
                         },
                         {
                             id: 2,
                             type: "note",
                             analogyItems: [1],
-                            subItems: [],
-                            supItems: [],
                             title: "title",
                             text: "text",
-                            isEmpty: function() { return this.type == "empty"; }
                         }
                     ]
                 ],
-        idCount: 3,
 
         getSetting: function(){
             return this.setting;      
@@ -58,61 +51,45 @@ FractalBackend.factory('backend', function() {
             if(items[x] && items[x][y])            
                 return this.items[x][y];
 
-            return this.getEmptyItem();
+            return itemFactory.emptyItem();
         },
 
         getEmptyItem: function(){
-            return {
-                type: "empty",
-                isEmpty: function() { return this.type == "empty"; }
-            };
-        },
-
-        createItem: function()
-        {
-            var item = this.getEmptyItem();
-
-            item.id = this.idCount++;
-            item.analogyItems = [];
-            item.subItems = [];
-            item.supItems = [];
-
-            return item;
+            return itemFactory.emptyItem();
         },
 
         checkItem: function(x, y)
         {
             var items = this.items;
             items[x] = items[x] || [];
-            items[x][y] = items[x][y] || this.createItem();
+            items[x][y] = items[x][y] || itemFactory.baseItem();
         },
 
         deleteItem: function(x, y)
         {
-            var items = this.items;
-
-            if(items[x] && items[x][y] )
-                items[x][y] = this.getEmptyItem();
+            this.checkItem(x, y);
+            this.items[x][y] = itemFactory.emptyItem();
         },
 
         createNote: function(){
-            var item = this.createItem();
 
-            item.type = "note";
-            item.title = "";
-            item.text = "";
-
-            return item;
+            return itemFactory.noteItem();
         },
 
         saveNote: function(x, y, data){
             this.checkItem(x, y);
-            var items = this.items;
-
-            for(var key in data)
-                items[x][y][key] = data[key];
-
-            items[x][y].type = "note";
+            this.items[x][y] = itemFactory.noteItem(data);
         }
     };
-});
+
+    function prepareData(items)
+    {
+        for(var x = 0; x < items.length; x++)
+            for(var y = 0; y < items[x].length; y++)
+                items[x][y] = itemFactory.noteItem(items[x][y]);
+    }
+
+    prepareData(backend.items);
+
+    return backend;
+}]);
