@@ -3,26 +3,26 @@
     <label>Ширина: <input type="number" 
                           ng-model = "setting.width"
                           min="1"
-                          ng-change = "saveSetting()">
+                          ng-change = "changeSetting()">
     </label> 
     
     <label>
             <input type="checkbox" 
                    ng-model="setting.fixedWidth"
-                   ng-change="saveSetting()">
+                   ng-change="changeSetting()">
             Зафиксировать ширину
     </label>
     <br>
     <label>Высота: <input type="number" 
                           ng-model="setting.height"
                           min="1"
-                          ng-change="saveSetting()">
+                          ng-change="changeSetting()">
 
     </label>
     <label>
             <input type="checkbox" 
                    ng-model="setting.fixedHeight"
-                   ng-change="saveSetting()"> 
+                   ng-change="changeSetting()"> 
             Зафиксировать высоту
     </label>
 </div>

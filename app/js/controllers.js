@@ -4,7 +4,7 @@
 
 var FractalControllers = angular.module('FractalControllers', []);
 
-FractalControllers.controller("dataController", ["$scope", "backend", "gridMaster" , function($scope, backend, gridMaster){
+FractalControllers.controller("dataController", ["$scope", "backend", function($scope, backend){
     $scope.setting = backend.getSetting();
     $scope.items = backend.getItems();
 }]);
@@ -12,21 +12,21 @@ FractalControllers.controller("dataController", ["$scope", "backend", "gridMaste
 FractalControllers.controller("settingController", ["$scope", "backend", "gridMaster" , 
                                                     function($scope, backend, gridMaster){
    
-    $scope.saveSetting = function()
+    $scope.changeSetting = function()
     {
-        $scope.items = gridMaster.compliteGrid($scope.items, $scope.setting );
+        $scope.items = gridMaster.completeGrid($scope.items, $scope.setting );
         backend.setSetting($scope.setting);
     }
 }]);
 
 
-FractalControllers.controller("gridController", ["$scope", "backend", "gridMaster", function($scope, backend, gridMaster){
+FractalControllers.controller("gridController", ["$scope", "gridMaster", function($scope, gridMaster){
 
-    $scope.compliteGrid = function(){
-        $scope.items = gridMaster.compliteGrid($scope.items, $scope.setting );
+    $scope.completeGrid = function(){
+        $scope.items = gridMaster.completeGrid($scope.items, $scope.setting );
     }
 
-    $scope.compliteGrid();
+    $scope.completeGrid();
 }]);
 
 FractalControllers.controller("itemController", ["$scope", "backend", function($scope, backend){
@@ -34,14 +34,14 @@ FractalControllers.controller("itemController", ["$scope", "backend", function($
     $scope.createItem = function(x, y)
     {
         $scope.items[x][y].type = "add";
-        $scope.compliteGrid();
+        $scope.completeGrid();
     }
 
-    $scope.setEmpty = function(x, y)
+    $scope.setEmptyItem = function(x, y)
     {
         backend.deleteItem(x, y);
         $scope.items[x][y] = backend.getItem(x, y);
-        $scope.compliteGrid();
+        $scope.completeGrid();
     }
 
     $scope.createNote = function(x, y)
@@ -72,7 +72,7 @@ FractalControllers.controller("noteController", ["$scope", "backend", "dialogs" 
         if(note.title == "" && note.text == "" || 
            dialogs.confirm("Вы точно хотите удалить заметку?"))
         {
-            $scope.setEmpty(x, y);   
+            $scope.setEmptyItem(x, y);   
         }
     }
 }]);

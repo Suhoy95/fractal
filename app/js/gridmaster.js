@@ -4,21 +4,21 @@ var FractalGridMaster = angular.module("FractalGridMaster", []);
 FractalGridMaster.factory('gridMaster', ["backend", function(backend) {
 
     return { 
-        compliteGrid: function(items, setting)
+        completeGrid: function(items, setting)
         {
             items = items || [];
 
             setting.width = max(setting.minWidth, findMaxWidth(items));
             setting.height = max(setting.minHeight, findMaxHeight(items));
   
-            items = compliteColumns(items, setting.width);
-            items = compliteRows(items, setting.height);
+            items = completeColumns(items, setting.width);
+            items = completeRows(items, setting.height);
   
             return items;
         }
     };
 
-    function compliteColumns(items, amountOfColumn)
+    function completeColumns(items, amountOfColumn)
     {
         var newItems = [];
 
@@ -28,7 +28,7 @@ FractalGridMaster.factory('gridMaster', ["backend", function(backend) {
         return newItems;   
     };
 
-    function compliteRows(items, amountOfRows)
+    function completeRows(items, amountOfRows)
     {
         for(var key in items)
         {

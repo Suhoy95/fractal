@@ -17,7 +17,7 @@ describe("grid master service", function(){
      });
 
     it("should complete a grid by setting", function(){
-        items = gridMaster.compliteGrid(items, setting);
+        items = gridMaster.completeGrid(items, setting);
 
         expect(items.length).toBe(setting.width);
 
@@ -26,7 +26,7 @@ describe("grid master service", function(){
     });
 
     it("should complete a grid of minimum setting", function(){
-        items = gridMaster.compliteGrid(items, setting);
+        items = gridMaster.completeGrid(items, setting);
 
         expect(items.length).not.toBeLessThan(setting.minWidth);
 
@@ -36,10 +36,10 @@ describe("grid master service", function(){
 
     it("should complete the littelst grid", function(){
         setting.minWidth = 5;
-        items = gridMaster.compliteGrid(items, setting);
+        items = gridMaster.completeGrid(items, setting);
 
         setting.minWidth = 4;
-        items = gridMaster.compliteGrid(items, setting);
+        items = gridMaster.completeGrid(items, setting);
 
         expect(items.length).toBe(setting.minWidth);
     });
