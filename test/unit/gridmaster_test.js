@@ -12,9 +12,6 @@ describe("grid master service", function(){
             backend = $injector.get("backend");
             items = backend.getItems();
             setting = backend.getSetting();
-        });
-
-        inject(function($injector){
             gridMaster = $injector.get("gridMaster");
         });
      });

@@ -40,6 +40,16 @@ describe("Fractal's itemfactory", function() {
         expect( typeof(item.sub) ).toBe("object");
     });
 
+    it("should give base item which extends empty item", function(){
+        var item = itemFactory.baseItem();
+
+        expect(item.isEmpty()).toBeFalsy();    
+    
+        item.type = 123;
+        expect(item.isEmpty).toThrow();
+    });
+
+
     it("give base item with createRelative(analogy) method", function(){
         var item1 = itemFactory.baseItem();
         var item2 = itemFactory.baseItem();
@@ -76,6 +86,45 @@ describe("Fractal's itemfactory", function() {
         expect( item.type ).toBe("note");
         expect( item.title ).toBe("");
         expect( item.text ).toBe("");
+    });
+
+    it("should give note extents  base item", function(){
+        var item = itemFactory.noteItem();
+
+        expect( typeof(item.id) ).toBe("number");
+        expect( typeof(item.analogy) ).toBe("object");
+        expect( typeof(item.sup) ).toBe("object");
+        expect( typeof(item.sub) ).toBe("object");
+    });
+
+    it("give note item with createRelative(analogy) method", function(){
+        var item1 = itemFactory.noteItem();
+        var item2 = itemFactory.noteItem();
+
+        item1.createRel(item2, 'analogy');
+
+        expect( item1.analogy.indexOf(item2.id) ).not.toBeLessThan(0);
+        expect( item2.analogy.indexOf(item1.id) ).not.toBeLessThan(0);
+    });
+
+    it("give note item with createRelative(sup) method", function(){
+        var item1 = itemFactory.noteItem();
+        var item2 = itemFactory.noteItem();
+
+        item1.createRel(item2, 'sup');
+
+        expect( item1.sup.indexOf(item2.id) ).not.toBeLessThan(0);
+        expect( item2.sub.indexOf(item1.id) ).not.toBeLessThan(0);
+    });
+
+    it("give note item with createRelative(sub) method", function(){
+        var item1 = itemFactory.noteItem();
+        var item2 = itemFactory.noteItem();
+
+        item1.createRel(item2, 'sub');
+
+        expect( item1.sub.indexOf(item2.id) ).not.toBeLessThan(0);
+        expect( item2.sup.indexOf(item1.id) ).not.toBeLessThan(0);
     });
 
     it("give note item with data", function(){

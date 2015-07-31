@@ -20,14 +20,14 @@ FractalBackend.factory('backend', ["itemFactory", function(itemFactory) {
                         {
                             id: 1,
                             type: "note",
-                            analogyItems: [2],
+                            analogy: [2],
                             title: "title",
                             text: "text",
                         },
                         {
                             id: 2,
                             type: "note",
-                            analogyItems: [1],
+                            analogy: [1],
                             title: "title",
                             text: "text",
                         }
