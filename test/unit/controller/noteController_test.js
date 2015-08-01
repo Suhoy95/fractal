@@ -15,7 +15,10 @@ describe("noteController", function() {
                 items: [[backend.createNote()]], 
                 setting: backend.getSetting(),
                 completeGrid: function(){},
-                setEmptyItem: function(){}
+                setEmptyItem: function(){},
+                linker: {
+                    disable: function(){}
+                }
             };
 
             spyOn(backend, "saveNote");

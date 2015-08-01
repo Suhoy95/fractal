@@ -5,16 +5,42 @@
     <div class="controll clearfix">
         <button class="delete-item" title="Удалить" ng-click="deleteNote(x, y)"></button>
         <button class="edit-item" title="Редактировать" ng-click="editNote(x, y)"></button>
-        <button class="analogy" title="Покаать аналогии">{{item.analogyItems.length}}</button> 
-        <button class="sub-item" title="Показать подэлементы">{{item.subItems.length}}</button>
-        <button class="sup-item" title="Показать надэлементы">{{item.supItems.length}}</button>                    
+        <button class="analogy" title="Покаать аналогии">{{item.analogy.length}}</button> 
+        <button class="sub-item" title="Показать подэлементы">{{item.sub.length}}</button>
+        <button class="sup-item" title="Показать надэлементы">{{item.sup.length}}</button>                    
     </div>
 
     <div class="description">
         {{item.text}}
     </div>
 
-    <div class="cover" ng-show="isEnabledRelatives()" ng-click="toggleRelative(item.id)">
-        <p>Нажмите сюда то бы выбрать элемент</p>
+    <div ng-show="linker.active" ng-switch="linker.currentRelation(item)" >
+        <div class="cover analog" ng-switch-when="analogy">
+            <p>
+                Этот элемент является аналогией <br> 
+                (<a ng-click="linker.unselectItem(item, 'analogy')">Нажвите сюда, чтобы удалить связь</a>)
+            </p>
+        </div>
+        
+        <div class="cover" ng-switch-when="sub">
+            <p>
+                Этот элемент является подэлементом <br> 
+                (<a ng-click="linker.unselectItem(item, 'sub')">Нажвите сюда, чтобы удалить связь</a>)
+            </p>
+        </div>
+
+        <div class="cover" ng-switch-when="sup">
+            <p>
+                Этот элемент является надэлементом <br> 
+                (<a ng-click="linker.unselectItem(item, 'sup')">Нажвите сюда, чтобы удалить связь</a>)
+            </p>
+        </div>
+        
+        <div class="cover" ng-switch-default ng-switch="linker.relation" ng-click="linker.selectItem(item)">
+            <p ng-switch-when="analogy">Нажмите, что бы сделать этот элемент аналогичным</p>
+            <p ng-switch-when="sub">Нажмите, что бы сделать этот элемент подэлементом</p>
+            <p ng-switch-when="sup">Нажмите, что бы сделать этот элемент надэлементом</p>
+        </div>
+
     </div>
 </div>

@@ -22,14 +22,15 @@ FractalItemFactory.factory('itemFactory', function() {
         return this.type === "empty";
     };
 
-    function baseItem()
+    function baseItem(data)
     {
+        data = data || {};
         emptyItem.call(this);
         this.type = "baseItem";
         this.id = idCounter++;
-        this.analogy = [];
-        this.sup = [];
-        this.sub = [];    
+        this.analogy = data.analogy || [];
+        this.sup = data.sup || [];
+        this.sub = data.sub || [];    
     };
 
     baseItem.prototype = Object.create(emptyItem.prototype);
@@ -37,32 +38,48 @@ FractalItemFactory.factory('itemFactory', function() {
     baseItem.prototype.createRel = function(item, rel) {
         var reflectionRel = getReflectionRel(rel);
 
-        if(this[rel].indexOf(item.id) < 0)
-            this[rel].push(item.id);
-        if(item[reflectionRel].indexOf(this.id) < 0)
-            item[reflectionRel].push(this.id);
+        var this_index = this[rel].indexOf(item.id);
+        var those_index = item[reflectionRel].indexOf(this.id)
 
-        function getReflectionRel(rel)
-        {
-            switch(rel){
-                case "analogy": return "analogy";
-                case "sup": return "sub";
-                case "sub": return "sup";
-            }
-            throw new Error("incorrect relation");
-        }
+        if(this_index < 0)
+            this[rel].push(item.id);
+
+        if(those_index < 0)
+            item[reflectionRel].push(this.id);
     };
+
+    baseItem.prototype.deleteRel = function(item, rel) {
+        var reflectionRel = getReflectionRel(rel);
+
+        var this_index = this[rel].indexOf(item.id);
+        var those_index = item[reflectionRel].indexOf(this.id)
+
+        if(this_index >= 0)
+            this[rel].splice(this_index, 1);
+
+        if(those_index >= 0)
+            item[reflectionRel].splice(those_index, 1);  
+    };
+
+    function getReflectionRel(rel)
+    {
+        switch(rel){
+            case "analogy": return "analogy";
+            case "sup": return "sub";
+            case "sub": return "sup";
+        }
+        throw new Error("incorrect relation");
+    }
 
     function noteItem(data)
     {
         data = data || {};
-        baseItem.call(this);
+        baseItem.call(this, data);
+        this.id = data.id || this.id;
         this.type = "note";
-        this.title = "";
-        this.text = "";
+        this.title =  data.title || "";
+        this.text = data.text || "";
 
-        for(var key in data)
-            this[key] = data[key];
         if(data.id && data.id >= idCounter)
             idCounter = data.id++;
     };

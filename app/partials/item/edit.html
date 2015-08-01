@@ -4,18 +4,21 @@
         <button class="delete-item" title="Удалить" ng-click="deleteNote(x, y)"></button>
         <button class="analogy" 
                 title="Покаать аналогии" 
-                ng-click="triggerRelative('analogy')">
-                    {{item.analogyItems.length}}
+                ng-click="linker.selectingRelation('analogy', item)"
+                ng-disabled="linker.isDisabled('analogy', item.id)">
+                    {{item.analogy.length}}
         </button> 
         <button class="sub-item" 
                 title="Показать подэлементы" 
-                ng-click="triggerRelative('sub')">
-                    {{item.subItems.length}}
+                ng-click="linker.selectingRelation('sub', item)"
+                ng-disabled="linker.isDisabled('sub', item.id)">
+                    {{item.sub.length}}
         </button>
         <button class="sup-item" 
                 title="Показать надэлементы" 
-                ng-click="triggerRelative('sup')">
-                    {{item.supItems.length}}
+                ng-click="linker.selectingRelation('sup', item)"
+                ng-disabled="linker.isDisabled('sup', item.id)">
+                    {{item.sup.length}}
         </button>                   
     </div>
     <textarea class="description" ng-model="item.text"></textarea>

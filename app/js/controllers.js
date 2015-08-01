@@ -27,6 +27,48 @@ FractalControllers.controller("gridController", ["$scope", "gridMaster", functio
     }
 
     $scope.completeGrid();
+
+    $scope.linker = {
+        active: false,
+        relation: '',
+        currentItem: { analogy: [], sup: [], sub:[]},
+        selectingRelation: function(relation, item)
+        {
+            this.relation = relation;
+            this.active = !this.active;
+            this.currentItem = item;
+        },
+        currentRelation: function(item)
+        {
+            if(this.currentItem.analogy.indexOf(item.id) >= 0)
+                return "analogy";
+            if(this.currentItem.sub.indexOf(item.id) >= 0)
+                return "sub";
+            if(this.currentItem.sup.indexOf(item.id) >= 0)
+                return "sup";
+            return "none";
+        },
+        selectItem: function(item)
+        {
+            this.currentItem.createRel(item, this.relation);
+        },
+        unselectItem: function(item, relation)
+        {
+            console.log('asdfd');
+            this.currentItem.deleteRel(item, relation);
+        },
+        isDisabled: function(relation, item_id)
+        {
+            return this.active && (this.relation != relation || 
+                   this.currentItem.id != item_id);
+        },
+        disable: function()
+        {
+            this.active = false;
+            this.relation = "";
+            this.currentItem = { analogy: [], sup: [], sub:[]};
+        }
+    };
 }]);
 
 FractalControllers.controller("itemController", ["$scope", "backend", function($scope, backend){
@@ -64,6 +106,7 @@ FractalControllers.controller("noteController", ["$scope", "backend", "dialogs" 
         backend.saveNote(x, y, $scope.items[x][y]);
 
         $scope.items[x][y] = backend.getItem(x, y);
+        $scope.linker.disable();
     }
 
     $scope.deleteNote = function(x, y)
