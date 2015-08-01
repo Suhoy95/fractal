@@ -76,6 +76,13 @@
     color: rgba(255, 255, 255, 0.9);
 }
 
+.item.note .controll button:disabled,
+.item.note .controll button:disabled:hover,
+.item.note .controll button:disabled:active{
+  background-color: rgba(50, 50, 50, 0.7);
+  color: rgba(30, 30, 30, 0.95);
+}
+
 .item.note .edit-item { background: url("img/edit-icon.png") 0 0 no-repeat; background-size: 1.4em; }
 .item.note .edit-item:active { background-image: url("img/edit-icon-active.png"); background-size: 1.4em; }
 
@@ -86,13 +93,16 @@
 .item.note .controll .sup-item,
 .item.note .controll .sub-item {padding-left: 1.4em;}
 
-.item.note .analogy { background: url("img/analogy-item.png") 0 0 no-repeat; background-size: 1.4em; }
+.item.note .analogy,
+.item.note .analogy:active:disabled { background: url("img/analogy-item.png") 0 0 no-repeat; background-size: 1.4em; }
 .item.note .analogy:active { background-image: url("img/analogy-item-active.png"); background-size: 1.4em; }
 
-.item.note .sup-item { background: url("img/sup-item.png") 0 0 no-repeat; background-size: 1.4em; }
+.item.note .sup-item,
+.item.note .sup-item:active:disabled { background: url("img/sup-item.png") 0 0 no-repeat; background-size: 1.4em; }
 .item.note .sup-item:active{ background-image: url("img/sup-item-active.png"); background-size: 1.4em; }
 
-.item.note .sub-item { background: url("img/sub-item.png") 0 0 no-repeat; background-size: 1.4em; }
+.item.note .sub-item,
+.item.note .sub-item:active:disabled { background: url("img/sub-item.png") 0 0 no-repeat; background-size: 1.4em; }
 .item.note .sub-item:active{ background-image: url("img/sub-item-active.png"); background-size: 1.4em; }
 /*item.note.edit */
 .item.note.edit .edit-item{ display: none; }
