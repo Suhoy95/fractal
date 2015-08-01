@@ -83,27 +83,27 @@
   color: rgba(30, 30, 30, 0.95);
 }
 
-.item.note .edit-item { background: url("img/edit-icon.png") 0 0 no-repeat; background-size: 1.4em; }
-.item.note .edit-item:active { background-image: url("img/edit-icon-active.png"); background-size: 1.4em; }
+.item.note .controll .edit-item { background: url("img/edit-icon.png") 0 0 no-repeat; background-size: 1.4em; }
+.item.note .controll .edit-item:active { background-image: url("img/edit-icon-active.png"); background-size: 1.4em; }
 
-.item.note .delete-item { background: url("img/delete-icon.png") 0 0 no-repeat; background-size: 1.4em; }
-.item.note .delete-item:active{ background-image: url("img/delete-icon-active.png"); background-size: 1.4em; }
+.item.note .controll .delete-item { background: url("img/delete-icon.png") 0 0 no-repeat; background-size: 1.4em; }
+.item.note .controll .delete-item:active{ background-image: url("img/delete-icon-active.png"); background-size: 1.4em; }
 
 .item.note .controll .analogy,
 .item.note .controll .sup-item,
 .item.note .controll .sub-item {padding-left: 1.4em;}
 
-.item.note .analogy,
-.item.note .analogy:active:disabled { background: url("img/analogy-item.png") 0 0 no-repeat; background-size: 1.4em; }
-.item.note .analogy:active { background-image: url("img/analogy-item-active.png"); background-size: 1.4em; }
+.item.note .controll .analogy,
+.item.note .controll .analogy:active:disabled { background: url("img/analogy-item.png") 0 0 no-repeat; background-size: 1.4em; }
+.item.note .controll .analogy:active { background-image: url("img/analogy-item-active.png"); background-size: 1.4em; }
 
-.item.note .sup-item,
-.item.note .sup-item:active:disabled { background: url("img/sup-item.png") 0 0 no-repeat; background-size: 1.4em; }
-.item.note .sup-item:active{ background-image: url("img/sup-item-active.png"); background-size: 1.4em; }
+.item.note .controll .sup-item,
+.item.note .controll .sup-item:active:disabled { background: url("img/sup-item.png") 0 0 no-repeat; background-size: 1.4em; }
+.item.note .controll .sup-item:active{ background-image: url("img/sup-item-active.png"); background-size: 1.4em; }
 
-.item.note .sub-item,
-.item.note .sub-item:active:disabled { background: url("img/sub-item.png") 0 0 no-repeat; background-size: 1.4em; }
-.item.note .sub-item:active{ background-image: url("img/sub-item-active.png"); background-size: 1.4em; }
+.item.note .controll .sub-item,
+.item.note .controll .sub-item:active:disabled { background: url("img/sub-item.png") 0 0 no-repeat; background-size: 1.4em; }
+.item.note .controll .sub-item:active{ background-image: url("img/sub-item-active.png"); background-size: 1.4em; }
 /*item.note.edit */
 .item.note.edit .edit-item{ display: none; }
 
@@ -175,6 +175,34 @@
   width: 100%;
   height: 100%;
   background: rgba(55, 55, 55, 0.7);
+}
+
+.item .cover a{
+  color: #fff;
+}
+.item .cover a:active{
+  color: #ccc;
+}
+
+.item .cover.analogy,
+.item .cover.analogy:hover,
+.item .cover.analogy:active {
+  cursor: auto;
+  background: rgba(0, 150, 0, 0.7);
+}
+
+.item .cover.sub,
+.item .cover.sub:hover,
+.item .cover.sub:active {
+  cursor: auto;
+  background: rgba(170, 140, 0, 0.7);
+}
+
+.item .cover.sup,
+.item .cover.sup:hover,
+.item .cover.sup:active {
+  cursor: auto; 
+  background: rgba(150, 0, 0, 0.7);
 }
 
 .item .cover p {

@@ -15,21 +15,21 @@
     </div>
 
     <div ng-show="linker.active" ng-switch="linker.currentRelation(item)" >
-        <div class="cover analog" ng-switch-when="analogy">
+        <div class="cover analogy" ng-switch-when="analogy">
             <p>
                 Этот элемент является аналогией <br> 
                 (<a ng-click="linker.unselectItem(item, 'analogy')">Нажвите сюда, чтобы удалить связь</a>)
             </p>
         </div>
         
-        <div class="cover" ng-switch-when="sub">
+        <div class="cover sub" ng-switch-when="sub">
             <p>
                 Этот элемент является подэлементом <br> 
                 (<a ng-click="linker.unselectItem(item, 'sub')">Нажвите сюда, чтобы удалить связь</a>)
             </p>
         </div>
 
-        <div class="cover" ng-switch-when="sup">
+        <div class="cover sup" ng-switch-when="sup">
             <p>
                 Этот элемент является надэлементом <br> 
                 (<a ng-click="linker.unselectItem(item, 'sup')">Нажвите сюда, чтобы удалить связь</a>)
