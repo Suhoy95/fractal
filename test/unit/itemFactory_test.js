@@ -96,6 +96,7 @@ describe("baseItem", function(){
 
         expect(item1.analogy).toContain(item2.id);
         expect(item2.analogy).toContain(item1.id);
+        expect(item1.isAnalogy(item2)).toBeTruthy();
     });
 
     it("should unbind item1 analogy item2", function(){
@@ -104,6 +105,7 @@ describe("baseItem", function(){
 
         expect(item1.analogy).not.toContain(item2.id);
         expect(item2.analogy).not.toContain(item1.id);
+        expect(item1.isAnalogy(item2)).toBeFalsy();
     });
 
     it("should bind item1 sup item2", function(){
@@ -111,6 +113,7 @@ describe("baseItem", function(){
 
         expect(item1.sup).toContain(item2.id);
         expect(item2.sub).toContain(item1.id);
+        expect(item1.isSup(item2)).toBeTruthy();
     });
 
     it("should unbind item1 sup item2", function(){
@@ -119,6 +122,7 @@ describe("baseItem", function(){
 
         expect(item1.sup).not.toContain(item2.id);
         expect(item2.sub).not.toContain(item1.id);
+        expect(item1.isSup(item2)).toBeFalsy();
     });
 
     it("should bind item1 sub item2", function(){
@@ -126,6 +130,7 @@ describe("baseItem", function(){
 
         expect(item1.sub).toContain(item2.id);
         expect(item2.sup).toContain(item1.id);
+        expect(item1.isSub(item2)).toBeTruthy();
     });
 
     it("should unbind item1 sub item2", function(){
@@ -134,6 +139,22 @@ describe("baseItem", function(){
 
         expect(item1.sub).not.toContain(item2.id);
         expect(item2.sup).not.toContain(item1.id);
+        expect(item1.isSub(item2)).toBeFalsy(); 
+    });
+
+    it("should have whatBinding function", function(){
+        item1.bind(item2, "analogy");
+        expect(item1.whatBinding(item2)).toBe("analogy");
+        item1.unbind(item2, "analogy");
+
+
+        item1.bind(item2, "sup");
+        expect(item1.whatBinding(item2)).toBe("sup");
+        item1.unbind(item2, "sup");
+
+        item1.bind(item2, "sub");
+        expect(item1.whatBinding(item2)).toBe("sub");
+        item1.unbind(item2, "sub");
     });
 });
 
@@ -199,6 +220,10 @@ function isBaseItemProp(item)
     expect(typeof(item.sub)).toBe("object");
     expect(typeof(item.bind)).toBe("function");
     expect(typeof(item.unbind)).toBe("function");
+    expect(typeof(item.isAnalogy)).toBe("function");
+    expect(typeof(item.isSup)).toBe("function");
+    expect(typeof(item.isSub)).toBe("function");
+    expect(typeof(item.whatBinding)).toBe("function");
 }
 
 function isNoteItemProp(item)

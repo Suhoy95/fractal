@@ -56,6 +56,10 @@ function baseItem(data){
     data.sub = data.sub || [];
     data.bind = createRel;
     data.unbind = deleteRel;
+    data.isAnalogy = isAnalogy;
+    data.isSup = isSup;
+    data.isSub = isSub;
+    data.whatBinding = whatBinding;
 
     return data;
 
@@ -92,6 +96,35 @@ function baseItem(data){
             return relation[rel];
 
         throw new Error("incorrect relation");
+    }
+
+    function isAnalogy(item)
+    {
+        return this.analogy.indexOf(item.id) >= 0 &&
+               item.analogy.indexOf(this.id) >= 0;
+    }
+
+    function isSup(item)
+    {
+        return this.sup.indexOf(item.id) >= 0 &&
+               item.sub.indexOf(this.id) >= 0;
+    }
+
+    function isSub(item)
+    {
+        return this.sub.indexOf(item.id) >= 0 &&
+               item.sup.indexOf(this.id) >= 0;
+    }
+
+    function whatBinding(item)
+    {
+        if(this.isAnalogy(item))
+            return "analogy";
+        if(this.isSup(item))
+            return "sup";
+        if(this.isSub(item))
+            return "sub";
+        return "";
     }
 }
 

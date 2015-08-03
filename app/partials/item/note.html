@@ -16,33 +16,28 @@
             {{item.text}}
         </div>
 
-        <div ng-show="linker.active" ng-switch="linker.currentRelation(item)" >
-            <div class="cover analogy" ng-switch-when="analogy">
-                <p>
-                    Этот элемент является аналогией <br> 
-                    (<a ng-click="linker.unselectItem(item, 'analogy')">Нажвите сюда, чтобы удалить связь</a>)
-                </p>
-            </div>
-            
-            <div class="cover sub" ng-switch-when="sub">
-                <p>
-                    Этот элемент является подэлементом <br> 
-                    (<a ng-click="linker.unselectItem(item, 'sub')">Нажвите сюда, чтобы удалить связь</a>)
-                </p>
-            </div>
+        <div ng-show="linker.isSelecting()"  ng-switch="linker.currentItem.whatBinding(item)">
 
-            <div class="cover sup" ng-switch-when="sup">
-                <p>
-                    Этот элемент является надэлементом <br> 
-                    (<a ng-click="linker.unselectItem(item, 'sup')">Нажвите сюда, чтобы удалить связь</a>)
-                </p>
-            </div>
-            
-            <div class="cover" ng-switch-default ng-switch="linker.relation" ng-click="linker.selectItem(item)">
+            <div class="cover" ng-switch-when="" ng-switch="linker.binding" ng-click="linker.bind(item)">
                 <p ng-switch-when="analogy">Нажмите, что бы сделать этот элемент аналогичным</p>
                 <p ng-switch-when="sub">Нажмите, что бы сделать этот элемент подэлементом</p>
                 <p ng-switch-when="sup">Нажмите, что бы сделать этот элемент надэлементом</p>
             </div>
+
+            <div class="cover" ng-class="{analogy: linker.currentItem.isAnalogy(item),
+                                          sup: linker.currentItem.isSup(item),
+                                          sub: linker.currentItem.isSub(item)}" 
+
+                ng-switch-default>
+                <p>
+                    Этот элемент является <span ng-switch="linker.currentItem.whatBinding(item)">
+                                            <span ng-switch-when="analogy">аналогией</span>
+                                            <span ng-switch-when="sub">подэлементом</span>
+                                            <span ng-switch-when="sup">надэлементом</span>
+                                          </span><br> 
+                    (<a ng-click="linker.unbind(item)">Нажвите сюда, чтобы удалить связь</a>)
+                </p>
+            </div>        
 
         </div>
     </div>
@@ -53,26 +48,26 @@
         <div class="controll clearfix">
             <button class="delete-item" title="Удалить" ng-click="deleteNote(item)"></button>
             <button class="analogy" 
-                    title="Покаать аналогии" 
-                    ng-click="linker.selectingRelation('analogy', item)"
-                    ng-disabled="linker.isDisabled('analogy', item.id)">
+                    title="Покаать аналогии"
+                    ng-class="{active: linker.currentItem == item && linker.binding === 'analogy'}" 
+                    ng-click="linker.select(item, 'analogy')">
                         {{item.analogy.length}}
             </button> 
             <button class="sub-item" 
                     title="Показать подэлементы" 
-                    ng-click="linker.selectingRelation('sub', item)"
-                    ng-disabled="linker.isDisabled('sub', item.id)">
+                    ng-class="{active: linker.currentItem == item && linker.binding === 'sub'}"
+                    ng-click="linker.select(item, 'sub')">
                         {{item.sub.length}}
             </button>
             <button class="sup-item" 
                     title="Показать надэлементы" 
-                    ng-click="linker.selectingRelation('sup', item)"
-                    ng-disabled="linker.isDisabled('sup', item.id)">
+                    ng-class="{active: linker.currentItem == item && linker.binding === 'sup'}"
+                    ng-click="linker.select(item, 'sup')">
                         {{item.sup.length}}
             </button>                   
         </div>
         <textarea class="description" ng-model="item.text"></textarea>
-        <button class="save-note" ng-click="item.save()">Сохранить</button>
+        <button class="save-note" ng-click="saveNote(item)">Сохранить</button>
     </div>
 
 </div>

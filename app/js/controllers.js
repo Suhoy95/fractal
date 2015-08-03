@@ -27,55 +27,14 @@ FractalControllers.controller("settingController", ["$scope", "gridMaster" ,
 }]);
 
 
-FractalControllers.controller("gridController", ["$scope", "gridMaster", function($scope, gridMaster){
+FractalControllers.controller("gridController", ["$scope", "gridMaster", "linker", function($scope, gridMaster, linker){
 
     $scope.completeGrid = function(){
         $scope.items = gridMaster.completeGrid($scope.items, $scope.setting);
     }
 
     $scope.completeGrid();
-
-    $scope.linker = {
-        active: false,
-        relation: '',
-        currentItem: { analogy: [], sup: [], sub:[]},
-        selectingRelation: function(relation, item)
-        {
-            this.relation = relation;
-            this.active = !this.active;
-            this.currentItem = item;
-        },
-        currentRelation: function(item)
-        {
-            if(this.currentItem.analogy.indexOf(item.id) >= 0)
-                return "analogy";
-            if(this.currentItem.sub.indexOf(item.id) >= 0)
-                return "sub";
-            if(this.currentItem.sup.indexOf(item.id) >= 0)
-                return "sup";
-            return "none";
-        },
-        selectItem: function(item)
-        {
-            this.currentItem.createRel(item, this.relation);
-        },
-        unselectItem: function(item, relation)
-        {
-            console.log('asdfd');
-            this.currentItem.deleteRel(item, relation);
-        },
-        isDisabled: function(relation, item_id)
-        {
-            return this.active && (this.relation != relation || 
-                   this.currentItem.id != item_id);
-        },
-        disable: function()
-        {
-            this.active = false;
-            this.relation = "";
-            this.currentItem = { analogy: [], sup: [], sub:[]};
-        }
-    };
+    $scope.linker = linker;
 }]);
 
 FractalControllers.controller("itemController", ["$scope", "dialogs", function($scope, dialogs){
@@ -93,11 +52,21 @@ FractalControllers.controller("itemController", ["$scope", "dialogs", function($
 
     $scope.deleteNote = function(item)
     {
-        if(item.title === "" && item.text === "" ||
-            dialogs.confirm("Вы уверены, что хотите заметку?"))
-        {
-            item.delete();
-            $scope.completeGrid();
-        }
+        if(!(item.title === "" && item.text === "") &&
+            !dialogs.confirm("Вы уверены, что хотите заметку?"))
+            return;
+
+        if(item == linker.currentItem) 
+            $scope.linker.disable();
+
+        item.delete();
+        $scope.completeGrid();
+    }
+
+    $scope.saveNote = function(item)
+    {
+        if(item == $scope.linker.currentItem) 
+            $scope.linker.disable();
+        item.save();
     }
 }]);
