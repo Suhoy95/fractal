@@ -1,41 +1,65 @@
 'use strict';
 
-
-
-
 var FractalItemFactory = angular.module("FractalItemFactory", []);
-
-
-
 
 FractalItemFactory.factory('itemFactory', function() {
 
     var idCounter = 1;
 
-    function emptyItem(){
-        this.type = "empty";
+    return {
+        emptyItem: emptyItem,
+        baseItem: baseItem,
+        noteItem: noteItem
+    };
+
+function emptyItem(data){
+    data = data || {};
+    for(var key in data)
+        data[key] = null;
+
+    data.type = "empty";
+    data.isEmpty = function() {return this.type === "empty"; };
+    data.create = function() { addItem(this); return this; };
+
+    return data;
+}
+
+function addItem(data)
+{
+    data = data || {};
+    data.type = "add";
+    data.delete = deleteItem;
+    data.createNote = createNote;
+
+    return data;
+
+    function deleteItem()
+    {
+        emptyItem(this);
+        return this;
     }
 
-    emptyItem.prototype.isEmpty = function() {
-        if(typeof(this.type) != "string")
-                throw new Error("item is broken");
-        return this.type === "empty";
-    };
-
-    function baseItem(data)
+    function createNote()
     {
-        data = data || {};
-        emptyItem.call(this);
-        this.type = "baseItem";
-        this.id = idCounter++;
-        this.analogy = data.analogy || [];
-        this.sup = data.sup || [];
-        this.sub = data.sub || [];    
-    };
+        noteItem(this);
+        return this;
+    }
+}
 
-    baseItem.prototype = Object.create(emptyItem.prototype);
+function baseItem(data){
+    data = data || {};
+    emptyItem(data);
+    data.id = data.id || idCounter++;
+    data.type = "base";
+    data.analogy = data.analogy || [];
+    data.sup = data.sup || [];
+    data.sub = data.sub || [];
+    data.bind = createRel;
+    data.unbind = deleteRel;
 
-    baseItem.prototype.createRel = function(item, rel) {
+    return data;
+
+    function createRel(item, rel) {
         var reflectionRel = getReflectionRel(rel);
 
         var this_index = this[rel].indexOf(item.id);
@@ -48,7 +72,7 @@ FractalItemFactory.factory('itemFactory', function() {
             item[reflectionRel].push(this.id);
     };
 
-    baseItem.prototype.deleteRel = function(item, rel) {
+    function deleteRel(item, rel) {
         var reflectionRel = getReflectionRel(rel);
 
         var this_index = this[rel].indexOf(item.id);
@@ -63,42 +87,46 @@ FractalItemFactory.factory('itemFactory', function() {
 
     function getReflectionRel(rel)
     {
-        switch(rel){
-            case "analogy": return "analogy";
-            case "sup": return "sub";
-            case "sub": return "sup";
-        }
+        var  relation ={ analogy: "analogy", sup: "sub", sub: "sup" };
+        if(relation[rel])
+            return relation[rel];
+
         throw new Error("incorrect relation");
     }
+}
 
-    function noteItem(data)
+function noteItem(data)
+{
+    data = data || {};
+    baseItem(data);
+
+    data.type = "note";
+    data.state = "save";
+    data.title = data.title || "";
+    data.text = data.text || "";
+    data.edit = editNote;
+    data.save = saveNote;
+    data.delete = deleteNote;
+
+    return data;
+
+    function editNote()
     {
-        data = data || {};
-        baseItem.call(this, data);
-        this.id = data.id || this.id;
-        this.type = "note";
-        this.title =  data.title || "";
-        this.text = data.text || "";
+        this.state = "edit";
+        return this;
+    }
 
-        if(data.id && data.id >= idCounter)
-            idCounter = data.id++;
-    };
+    function saveNote()
+    {
+        this.state = "save";
+        return this
+    }
 
-    noteItem.prototype = Object.create(baseItem.prototype);
-
-    return {
-        
-    emptyItem:function(){
-            return new emptyItem();
-        },
-    baseItem: function()
-        {
-            return new baseItem();
-        },
-    noteItem:function(data)
-        {
-            return new noteItem(data);
-        }
-    };
+    function deleteNote()
+    {
+        emptyItem(this);
+        return this;
+    }
+} 
 
 });

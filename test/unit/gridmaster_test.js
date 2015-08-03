@@ -2,16 +2,21 @@
 
 describe("grid master service", function(){
 
-    var backend, gridMaster, items, setting;
+    var gridMaster, items, setting;
 
     beforeEach(function(){
-        module("FractalBackend");
         module("FractalGridMaster");
 
         inject(function($injector){
-            backend = $injector.get("backend");
-            items = backend.getItems();
-            setting = backend.getSetting();
+            items = [[]];
+            setting = {
+                        minWidth: 4,
+                        minHeight: 4,
+                        width: 4,
+                        height: 4,
+                        fixedWidth: false,
+                        fixedHeight:false
+                    };
             gridMaster = $injector.get("gridMaster");
         });
      });

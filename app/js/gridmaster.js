@@ -1,7 +1,7 @@
 
-var FractalGridMaster = angular.module("FractalGridMaster", []);
+var FractalGridMaster = angular.module("FractalGridMaster", ["FractalItemFactory"]);
 
-FractalGridMaster.factory('gridMaster', ["backend", function(backend) {
+FractalGridMaster.factory('gridMaster', ["itemFactory", function(itemFactory) {
 
     return { 
         completeGrid: function(items, setting)
@@ -35,7 +35,7 @@ FractalGridMaster.factory('gridMaster', ["backend", function(backend) {
             var tmpColumn = items[key];
             items[key] = [];
             for(var i = 0; i < amountOfRows; i++)
-                items[key][i] = tmpColumn[i] || backend.getEmptyItem();
+                items[key][i] = tmpColumn[i] || itemFactory.emptyItem();
         }
 
         return items;
