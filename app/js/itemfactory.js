@@ -14,8 +14,6 @@ FractalItemFactory.factory('itemFactory', function() {
 
 function emptyItem(data){
     data = data || {};
-    for(var key in data)
-        data[key] = null;
 
     data.type = "empty";
     data.isEmpty = function() {return this.type === "empty"; };
@@ -60,6 +58,8 @@ function baseItem(data){
     data.isSup = isSup;
     data.isSub = isSub;
     data.whatBinding = whatBinding;
+    data.delete = deleteItem;
+    data.deleteItem = deleteItem;
 
     return data;
 
@@ -126,6 +126,15 @@ function baseItem(data){
             return "sub";
         return "";
     }
+
+    function deleteItem()
+    {
+        this.id = undefined;
+        this.analogy = undefined;
+        this.sup = undefined;
+        this.sub = undefined;
+        emptyItem(this);
+    }
 }
 
 function noteItem(data)
@@ -157,6 +166,10 @@ function noteItem(data)
 
     function deleteNote()
     {
+        data.state = undefined;
+        data.title = undefined;
+        data.text = undefined;
+        data.deleteItem();
         emptyItem(this);
         return this;
     }

@@ -20,12 +20,14 @@ FractalGridMaster.factory('gridMaster', ["itemFactory", function(itemFactory) {
 
     function completeColumns(items, amountOfColumn)
     {
-        var newItems = [];
-
         for(var i = 0; i < amountOfColumn; i++)
-            newItems[i] = items[i] || [];
+            items[i] = items[i] || [];
 
-        return newItems;   
+        var amountRmColumn = items.length - amountOfColumn;
+        if(amountRmColumn > 0)
+            items.splice(amountOfColumn, amountRmColumn);
+
+        return items;   
     };
 
     function completeRows(items, amountOfRows)

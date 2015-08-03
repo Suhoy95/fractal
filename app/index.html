@@ -24,7 +24,8 @@
         </div>
     </div>
 
-    <div ui-view="full-article"></div>
+    <button ng-click="show_data = !show_data">Показать данные</button>
+    <pre ng-show="show_data" style="background: #aaa;" ng-controller="dumpController">{{ {setting:setting, items:items} | json }}</pre>
   
     <div class="footer">
         Made by <a href="">&copy;Suhoy</a>

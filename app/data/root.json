@@ -1,0 +1,141 @@
+{
+  "setting": {
+    "minWidth": 4,
+    "minHeight": 4,
+    "width": 4,
+    "height": 4,
+    "fixedWidth": false,
+    "fixedHeight": false
+  },
+  "items": [
+    [
+      {
+        "type": "note",
+        "id": 1,
+        "analogy": [],
+        "sup": [],
+        "sub": [
+          2
+        ],
+        "state": "save",
+        "title": "Добро пожаловать",
+        "text": "Fractal - новая система заметок"
+      },
+      {
+        "type": "note",
+        "id": 2,
+        "analogy": [],
+        "sup": [
+          1
+        ],
+        "sub": [],
+        "state": "save",
+        "title": "Как использоваь",
+        "text": "Тут будут некоторые инструкции по использованию Fractal"
+      },
+      {
+        "type": "empty"
+      },
+      {
+        "type": "empty"
+      }
+    ],
+    [
+      {
+        "type": "note",
+        "id": 3,
+        "analogy": [],
+        "sup": [],
+        "sub": [
+          5,
+          6
+        ],
+        "state": "save",
+        "title": "главная заметка",
+        "text": "Эта заметка имеет отношение к остальным"
+      },
+      {
+        "type": "note",
+        "id": 5,
+        "analogy": [
+          4,
+          6
+        ],
+        "sup": [
+          3
+        ],
+        "sub": [],
+        "state": "save",
+        "title": "заметка 2",
+        "text": "Вторая заметка"
+      },
+      {
+        "type": "empty"
+      },
+      {
+        "type": "empty"
+      }
+    ],
+    [
+      {
+        "type": "note",
+        "id": 4,
+        "analogy": [
+          5,
+          6
+        ],
+        "sup": [],
+        "sub": [],
+        "state": "save",
+        "title": "заметка 1",
+        "text": "Первая заметка"
+      },
+      {
+        "type": "note",
+        "id": 6,
+        "analogy": [
+          4,
+          5
+        ],
+        "sup": [
+          3
+        ],
+        "sub": [
+          7
+        ],
+        "state": "save",
+        "title": "заметка 3",
+        "text": "Третья заметка"
+      },
+      {
+        "type": "note",
+        "id": 7,
+        "analogy": [],
+        "sup": [
+          6
+        ],
+        "sub": [],
+        "state": "save",
+        "title": "Заметка 3.1",
+        "text": "Подзаметка 3 заметки"
+      },
+      {
+        "type": "empty"
+      }
+    ],
+    [
+      {
+        "type": "empty"
+      },
+      {
+        "type": "empty"
+      },
+      {
+        "type": "empty"
+      },
+      {
+        "type": "empty"
+      }
+    ]
+  ]
+}
