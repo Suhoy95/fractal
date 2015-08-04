@@ -7,9 +7,18 @@
         <div class="controll clearfix">
             <button class="delete-item" title="Удалить" ng-click="deleteNote(item)"></button>
             <button class="edit-item" title="Редактировать" ng-click="item.edit()"></button>
-            <button class="analogy" title="Покаать аналогии">{{item.analogy.length}}</button> 
-            <button class="sub-item" title="Показать подэлементы">{{item.sub.length}}</button>
-            <button class="sup-item" title="Показать надэлементы">{{item.sup.length}}</button>                    
+            <button class="analogy" title="Покаать аналогии" 
+                    ng-click="setBinding(item, 'analogy')">
+                    {{item.analogy.length}}
+            </button> 
+            <button class="sub-item" title="Показать подэлементы"
+                    ng-click="setBinding(item, 'sub')">
+                    {{item.sub.length}}
+            </button>
+            <button class="sup-item" title="Показать надэлементы"
+                    ng-click="setBinding(item, 'sup')">
+                    {{item.sup.length}}
+            </button>                    
         </div>
 
         <div class="description">

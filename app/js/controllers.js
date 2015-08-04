@@ -46,14 +46,38 @@ FractalControllers.controller("settingController", ["$scope", "gridMaster" ,
     }
 }]);
 
+FractalControllers.controller("showerController", ["$scope", "gridMaster",
+                                                 "shower", "linker",
+                                                  function($scope, gridMaster, shower, linker){
 
-FractalControllers.controller("gridController", ["$scope", "gridMaster", "linker", function($scope, gridMaster, linker){
+    $scope.linker = linker;
+    $scope.shower = shower;
+
+    $scope.getBindingItems = function()
+    {
+        var items = $scope.shower.filterItems($scope.items);
+        var result = gridMaster.createMinGrid(items, $scope.setting);
+        return result;
+    }
+
+    $scope.setBinding = function(item, relation)
+    {
+        $scope.shower.setBinding(item, relation);
+        $scope.filterItems = $scope.getBindingItems();
+    }
+
+    $scope.unsetBinding = function( relation)
+    {
+        $scope.shower.unsetBinding(relation);
+        $scope.filterItems = $scope.getBindingItems();
+    }
+}]);
+
+FractalControllers.controller("gridController", ["$scope", "gridMaster", function($scope, gridMaster){
 
     $scope.completeGrid = function(){
         $scope.items = gridMaster.completeGrid($scope.items, $scope.setting);
     };
-
-    $scope.linker = linker;
 }]);
 
 FractalControllers.controller("itemController", ["$scope", "dialogs", function($scope, dialogs){
@@ -87,14 +111,5 @@ FractalControllers.controller("itemController", ["$scope", "dialogs", function($
         if(item == $scope.linker.currentItem) 
             $scope.linker.disable();
         item.save();
-    }
-}]);
-
-FractalControllers.controller("dumpController", ["$scope", function($scope){
-
-    $scope.dump = 
-    {
-        setting: $scope.setting,
-        items: $scope.items
     }
 }]);

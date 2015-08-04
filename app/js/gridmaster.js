@@ -15,6 +15,24 @@ FractalGridMaster.factory('gridMaster', ["itemFactory", function(itemFactory) {
             items = completeRows(items, setting.height);
   
             return items;
+        },
+        createMinGrid: function(items, setting)
+        {
+            var x = 0, y = 0;
+            var result = [];
+            for(var i = 0; i < setting.minWidth; i++)
+                result[i] = [];
+
+            for(var i in items)
+            {
+                result[x][y] = items[i];
+                x++;
+                if(x === setting.minWidth)
+                {
+                    y++;
+                }
+            }
+            return result;
         }
     };
 

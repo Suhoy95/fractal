@@ -16,16 +16,21 @@
         <div ng-include="'partials/setting.html'" ng-show="show_setting"></div>
     </div>
 
-    <div class="workplace clearfix" ng-controller="gridController" complite-width="{{setting.width}}">
-        <div class="column" ng-repeat="(x, column) in items">
-            <div ng-repeat="(y, item) in column">
-                <div ng-include="'partials/item/' + item.type + '.html'" ng-controller="itemController"></div>
-            </div>
+    <div ng-controller="showerController" ng-switch="shower.state()">
+        <div ng-switch-when="grid">
+            <div ng-include="'partials/workplace.html'"></div>
         </div>
-    </div>
 
-    <button ng-click="show_data = !show_data">Показать данные</button>
-    <pre ng-show="show_data" style="background: #aaa;" ng-controller="dumpController">{{ {setting:setting, items:items} | json }}</pre>
+        <div ng-switch-when="relations">
+            <div ng-include="'partials/relations.html'"></div>
+        </div>
+
+
+        <button ng-click="show_data = !show_data">Показать данные</button>
+    <pre ng-show="show_data" style="background: #aaa;">{{ {setting:setting, shower: shower, items:items} | json }}</pre>
+    </div>
+        
+    
   
     <div class="footer">
         Made by <a href="">&copy;Suhoy</a>
@@ -37,6 +42,7 @@
     <script src="js/itemfactory.js"></script>
     <script src="js/gridmaster.js"></script>
     <script src="js/linker.js"></script>
+    <script src="js/shower.js"></script>
     <script src="js/dialogs.js"></script>
     <script src="js/controllers.js"></script>
     <script src="js/filters.js"></script>
