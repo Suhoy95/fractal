@@ -10,9 +10,13 @@
     <link rel="stylesheet" type="text/css" href="style/footer.css">
 </head>
 <body>
-    <div class="header">
+    <div class="header clearfix">
         <h1>Fractal</h1>
-        <button class="customization-button"></button>
+        <div class="controll">
+            <button class="customization-button"></button>
+            <button>Показать сетку</button>
+            <button>Отменить создание связи</button>
+        </div>
         <div class="customization-bar">
             <h2> Настройки </h2>
             <label>Ширина: <input type="text" name="workplace-width" value="4"></label> 
@@ -44,7 +48,11 @@
         </div>
     </div>
     <div class="workplace clearfix">
-        <div class="title">Связанные записи:</div>
+        <div class="title">Показаны:
+        <span>аналогии<button>Х</button></span>
+        <span>подэлементы<button >Х</button></span>
+        <span>надэлементы<button >Х</button></span>
+    </div>
 
         <div class="column">
             <div class="item note">

@@ -10,9 +10,11 @@
     <link rel="stylesheet" type="text/css" href="css/footer.css">
 </head>
 <body ng-controller="dataController">
-    <div class="header">
+    <div class="header clearfix">
         <h1>Fractal</h1>
-        <button class="customization-button" ng-click="show_setting = !show_setting"></button>
+        <div class="controll">
+            <button class="customization-button" ng-click="show_setting = !show_setting"></button>
+        </div>
         <div ng-include="'partials/setting.html'" ng-show="show_setting"></div>
     </div>
 

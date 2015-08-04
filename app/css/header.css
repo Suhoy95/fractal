@@ -17,28 +17,38 @@
   color: rgba(0,0,0,0.67);
 }
 
+.header .controll{
+  margin: 0.35em 1em 0 0;
+}
+
+.header .controll button {
+  height: 2em; 
+  margin: 0 1em  0 0;
+  background-color: rgba(0,0,0,0);
+}
+
+.header .controll button:hover {
+  background-color:rgba(250,250,250, 0.8);
+}
+
+.header .controll button:active {
+  background-color:rgba(51,51,51, 0.8);
+}
+
 .header .customization-button {
-  position:relative;
-  float: right;
-  top: 0;right: 4em;
   width: 2em;
   height: 2em;
-  margin: 0.35em 0;
   background: url('img/settings.png');
   background-size: 2em;
-  border-radius: 1em;
-  border-width: 0;
 }
 
 .header .customization-button:hover {
   cursor: pointer;
-  background-color:rgba(250,250,250, 0.8);
 }
 
 .header .customization-button:active {
   background-image: url('img/settings-active.png');
   background-size: 2em;
-  background-color:rgba(250,250,250, 0.8);
 }
 
 .header .customization-bar {

@@ -16,6 +16,26 @@
     font-size:  1.4em;
 }
 
+.workplace>.title span {
+  display: inline-block;
+  padding: 0 0.5em 0.1em 0.5em;
+  background: rgba(0, 0, 0, 0.05);
+  border:  1px solid rgba(255, 255, 255, 0.3);
+}
+
+.workplace>.title span button{
+  margin: 0 0 0.1em 0.5em;
+  background: rgba(200, 160, 0, 0.6);
+}
+
+.workplace>.title span button:hover{
+  background: rgba(200, 160, 0, 0.8);
+}
+
+.workplace>.title span button:active{
+  background: rgba(50, 50, 50, 0.5);
+}
+
 .workplace .column {
   display: block;
   float: left;
