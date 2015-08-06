@@ -1,9 +1,9 @@
 <div class="customization-bar" ng-controller="settingController">
     <h2> Настройки </h2>
-    <label>Ширина: <input type="number" 
-                          ng-model = "setting.width"
-                          min="1"
-                          ng-change = "changeSetting()">
+    <label>Минимальная ширина: <input type="text" 
+                                      ng-model = "setting.minWidth"
+                                      min="1"
+                                      ng-change = "changeSetting()"><br>
     </label> 
     
     <label>
@@ -13,16 +13,6 @@
             Зафиксировать ширину
     </label>
     <br>
-    <label>Высота: <input type="number" 
-                          ng-model="setting.height"
-                          min="1"
-                          ng-change="changeSetting()">
-
-    </label>
-    <label>
-            <input type="checkbox" 
-                   ng-model="setting.fixedHeight"
-                   ng-change="changeSetting()"> 
-            Зафиксировать высоту
-    </label>
+    <p>текущая ширина: {{setting.width}}</p>
+    <p>текущая высота: {{setting.height}}</p>
 </div>

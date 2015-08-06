@@ -4,8 +4,8 @@
 
 var FractalControllers = angular.module('FractalControllers', []);
 
-FractalControllers.controller("dataController", ["$scope", "$http", "itemFactory", "gridMaster",
-                                                 function($scope, $http, itemFactory, gridMaster){
+FractalControllers.controller("dataController", ["$scope", "$http", "itemFactory", "gridMaster", "shower", "linker",
+                                                 function($scope, $http, itemFactory, gridMaster, shower, linker){
     $http.get("data/root.json").success(function(data) {
         $scope.setting = data.setting;
         $scope.items = data.items;
@@ -33,22 +33,6 @@ FractalControllers.controller("dataController", ["$scope", "$http", "itemFactory
         $scope.items = [];  
         $scope.items = gridMaster.completeGrid($scope.items, $scope.setting);
     });
-    
-}]);
-
-FractalControllers.controller("settingController", ["$scope", "gridMaster" , 
-                                                    function($scope, gridMaster){
-   
-    $scope.changeSetting = function()
-    {
-        $scope.items = gridMaster.completeGrid($scope.items, $scope.setting );
-        backend.setSetting($scope.setting);
-    }
-}]);
-
-FractalControllers.controller("showerController", ["$scope", "gridMaster",
-                                                 "shower", "linker",
-                                                  function($scope, gridMaster, shower, linker){
 
     $scope.linker = linker;
     $scope.shower = shower;
@@ -70,6 +54,17 @@ FractalControllers.controller("showerController", ["$scope", "gridMaster",
     {
         $scope.shower.unsetBinding(relation);
         $scope.filterItems = $scope.getBindingItems();
+    }
+    
+}]);
+
+FractalControllers.controller("settingController", ["$scope", "gridMaster" , 
+                                                    function($scope, gridMaster){
+   
+    $scope.changeSetting = function()
+    {
+        $scope.items = gridMaster.completeGrid($scope.items, $scope.setting );
+        backend.setSetting($scope.setting);
     }
 }]);
 

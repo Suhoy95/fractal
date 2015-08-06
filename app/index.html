@@ -18,7 +18,7 @@
         <div ng-include="'partials/setting.html'" ng-show="show_setting"></div>
     </div>
 
-    <div ng-controller="showerController" ng-switch="shower.state()">
+    <div ng-switch="shower.state()">
         <div ng-switch-when="grid">
             <div ng-include="'partials/workplace.html'"></div>
         </div>
@@ -26,7 +26,6 @@
         <div ng-switch-when="relations">
             <div ng-include="'partials/relations.html'"></div>
         </div>
-
 
         <button ng-click="show_data = !show_data">Показать данные</button>
     <pre ng-show="show_data" style="background: #aaa;">{{ {setting:setting, shower: shower, items:items} | json }}</pre>
