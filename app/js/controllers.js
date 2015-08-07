@@ -64,14 +64,29 @@ FractalControllers.controller("settingController", ["$scope", "gridMaster" ,
     $scope.changeSetting = function()
     {
         $scope.items = gridMaster.completeGrid($scope.items, $scope.setting );
-        backend.setSetting($scope.setting);
     }
 }]);
 
-FractalControllers.controller("gridController", ["$scope", "gridMaster", function($scope, gridMaster){
+FractalControllers.controller("gridController", ["$scope", "gridMaster", "$timeout", function($scope, gridMaster, $timeout){
 
     $scope.completeGrid = function(){
         $scope.items = gridMaster.completeGrid($scope.items, $scope.setting);
+    };
+
+    $scope.sortableOptions = {
+        tolerance: "pointer",
+        handle: "div.controll .sort-item",
+        connectWith: ".column",
+        stop: function(){
+            var x = window.scrollX,
+                y = window.scrollY;
+            $scope.completeGrid();
+
+            $timeout(function(){
+                window.scrollTo(x, y);             
+            }, 0);
+
+        }
     };
 }]);
 

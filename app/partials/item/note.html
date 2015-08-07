@@ -7,6 +7,7 @@
         <div class="controll clearfix">
             <button class="delete-item" title="Удалить" ng-click="deleteNote(item)"></button>
             <button class="edit-item" title="Редактировать" ng-click="item.edit()"></button>
+            <span class="button sort-item" title="Переместить" ng-show="shower.state() == 'grid'"></span>
             <button class="analogy" title="Покаать аналогии" 
                     ng-click="setBinding(item, 'analogy')">
                     {{item.analogy.length}}
@@ -56,6 +57,7 @@
         <h2><input type="text" class="title" ng-model="item.title" ></h2>
         <div class="controll clearfix">
             <button class="delete-item" title="Удалить" ng-click="deleteNote(item)"></button>
+            <span class="button sort-item" title="Переместить"  ng-show="shower.state() == 'grid'"></span>
             <button class="analogy" 
                     title="Покаать аналогии"
                     ng-class="{active: linker.currentItem == item && linker.binding === 'analogy'}" 

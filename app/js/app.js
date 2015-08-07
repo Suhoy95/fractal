@@ -2,7 +2,8 @@
 
 /* App Module */
 
-var FractalApp = angular.module('FractalApp', ['FractalGridMaster',
+var FractalApp = angular.module('FractalApp', ['ui.sortable',
+                                               'FractalGridMaster',
                                                'FractalLinker',
                                                'FractalShower',
                                                'FractalDialogs',
