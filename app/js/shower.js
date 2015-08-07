@@ -10,6 +10,7 @@ var relations = ["analogy", "sup", "sub"];
         state: getState,
         setBinding: setBinding,
         unsetBinding: unsetBinding,
+        clearBinding:clearBinding,
         filterItems: filterItems
 
     };
@@ -28,6 +29,9 @@ function setBinding(item, relation)
     if(relations.indexOf(relation) < 0)
         throw new Error("Bad relation");
 
+    if(item !== this.currentItem)
+        this.clearBinding();
+
     this.bindings[relation] = true;
     this.currentItem = item;
 }
@@ -38,6 +42,12 @@ function unsetBinding(relation)
         throw new Error("Bad relation");
 
     this.bindings[relation] = false;    
+}
+
+function clearBinding()
+{
+    for(var key in this.bindings)
+        this.bindings[key] = false;
 }
 
 function filterItems(items)

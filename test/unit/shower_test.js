@@ -17,7 +17,7 @@ describe("Fractal's shower", function() {
         expect(shower.state()).toBe("grid");
     });
 
-    it("should become relations state by setBinding method", function(){
+    it("should become relations state when binding is setted method", function(){
         shower.setBinding(item, "analogy");
 
         expect(shower.state()).toBe("relations");
@@ -70,5 +70,26 @@ describe("Fractal's shower", function() {
         expect(result.length).toBe(6);
         for(var key in result)
             expect(item.isAnalogy(result[key]) || item.isSup(result[key])).toBe(true);
+    });
+
+    it("should clear all active binding", function(){
+        shower.setBinding(item, "analogy");
+        shower.setBinding(item, "sup");
+        shower.clearBinding();
+
+        expect(shower.state()).toBe("grid");
+    });
+
+
+    it("should clear when new element is setting binding", function(){
+        shower.setBinding(items[0][0], "analogy");
+        shower.setBinding(items[0][0], "sup");
+
+        shower.setBinding(items[0][1], "sup");
+
+
+        expect(shower.bindings["analogy"]).toBeFalsy();
+        expect(shower.bindings["sub"]).toBeFalsy();
+        expect(shower.bindings["sup"]).toBeTruthy();
     });
 });

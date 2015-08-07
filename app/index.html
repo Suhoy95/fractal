@@ -14,6 +14,8 @@
         <h1>Fractal</h1>
         <div class="controll">
             <button class="customization-button" ng-click="show_setting = !show_setting"></button>
+            <button ng-click="shower.clearBinding()" ng-show="shower.state() !== 'grid'">Вернуться к сетке элементов</button>
+            <button ng-click="linker.disable()" ng-show="linker.isSelecting()">Выйти из режима создания связей</button>
         </div>
         <div ng-include="'partials/setting.html'" ng-show="show_setting"></div>
     </div>
