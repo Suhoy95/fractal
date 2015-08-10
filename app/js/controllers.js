@@ -63,34 +63,32 @@ FractalControllers.controller("settingController", ["$scope", "gridMaster" ,
    
     $scope.changeSetting = function()
     {
-        $scope.items = gridMaster.completeGrid($scope.items, $scope.setting );
+        $scope.items = gridMaster.completeGrid($scope.items, $scope.setting);
     }
 }]);
 
-FractalControllers.controller("gridController", ["$scope", "gridMaster", "$timeout", function($scope, gridMaster, $timeout){
+FractalControllers.controller("gridController", ["$scope", "gridMaster", "$window", "$timeout", 
+                                                 function($scope, gridMaster, $window, $timeout){
 
     $scope.completeGrid = function(){
+        var x = $window.scrollX,
+            y = $window.scrollY;
         $scope.items = gridMaster.completeGrid($scope.items, $scope.setting);
+    
+        $timeout(function() {
+            $window.scrollTo(x, y);
+        }, 0);
     };
 
     $scope.sortableOptions = {
         tolerance: "pointer",
         handle: "div.controll .sort-item",
         connectWith: ".column",
-        stop: function(){
-            var x = window.scrollX,
-                y = window.scrollY;
-            $scope.completeGrid();
-
-            $timeout(function(){
-                window.scrollTo(x, y);             
-            }, 0);
-
-        }
+        stop: $scope.completeGrid
     };
 }]);
 
-FractalControllers.controller("itemController", ["$scope", "dialogs", function($scope, dialogs){
+FractalControllers.controller("itemController", ["$scope", "$window", function($scope, $window){
     $scope.createItem = function(item)
     {
         item.create();
@@ -106,7 +104,7 @@ FractalControllers.controller("itemController", ["$scope", "dialogs", function($
     $scope.deleteNote = function(item)
     {
         if(!(item.title === "" && item.text === "") &&
-            !dialogs.confirm("Вы уверены, что хотите заметку?"))
+            !$window.confirm("Вы уверены, что хотите заметку?"))
             return;
 
         if(item == $scope.linker.currentItem) 

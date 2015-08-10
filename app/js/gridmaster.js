@@ -33,6 +33,7 @@ FractalGridMaster.factory('gridMaster', ["itemFactory", function(itemFactory) {
                 if(x === setting.minWidth)
                 {
                     y++;
+                    x = 0;
                 }
             }
             return result;
