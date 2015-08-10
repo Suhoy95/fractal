@@ -5,17 +5,22 @@ Fractal@demo
 
 Зависимости
 -----------
-Для запуска демо режима потребуется nodejs, и менеджер пакетов npm:
-(Версии на который проводилс запуск)
+Для запуска демо режима потребуется nodejs, менеджер пакетов npm, и git:
+(Версии на который проводился запуск)
 ```
 node.exe -v
 v0.12.2
 
 npm.cmd --version
 2.12.1
+
+git --version
+git version 1.9.4.msysgit.2
 ```
-nodejs: https://nodejs.org/download/
-npm: https://www.npmjs.com/package/npm
+
+ - nodejs: https://nodejs.org/download/
+ - npm(если не установился вместе с nodejs автоматически): https://www.npmjs.com/package/npm
+ - git: http://git-scm.com/
 
 Установка
 ---------
